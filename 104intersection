@@ -31,10 +31,29 @@ def check_for_err():
             sys.exit(84)
         i += 1
 
-    flag = int(sys.argv[2])
-    if flag != 1 or flag != 2 or flag != 3:
+    flag = int(sys.argv[1])
+    if flag != 1 and flag != 2 and flag != 3:
         print("Flag error. Try -h for more informations.")
         sys.exit(84)
 
+def sphere():
+    print('sphere')
+    return(0)
+
+def cylinder():
+    print('cylinder')
+    return(0)
+
+def cone():
+    print('cone')
+    return(0)
+
 check_for_err()
+if int(sys.argv[1]) == 1:
+    sphere()
+elif int(sys.argv[1]) == 2:
+    cylinder()
+elif int(sys.argv[1]) == 3:
+    cone()
+
 print('fin')
