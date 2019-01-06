@@ -37,15 +37,43 @@ def check_for_err():
         sys.exit(84)
 
 def sphere():
-    print('sphere')
-    return(0)
+    a = (int(sys.argv[5])**2) + (int(sys.argv[6])**2) + (int(sys.argv[7])**2)
+    b = (2 * int(sys.argv[2]) * int(sys.argv[5])) + (2 * int(sys.argv[3]) * int(sys.argv[6])) + (2 * int(sys.argv[4]) * int(sys.argv[7]))
+    c = (int(sys.argv[2])**2) + (int(sys.argv[3])**2) + (int(sys.argv[4])**2) - (int(sys.argv[8])**2)
+    delt = b**2 - 4 * a * c
+    print("Sphere of radius {}".format(int(sys.argv[8])))
+    aff(a, b, delt)
 
 def cylinder():
-    print('cylinder')
+    a = (int(sys.argv[5])**2) + (int(sys.argv[6])**2)
+    b = (2 * int(sys.argv[2]) * int(sys.argv[5])) + (2 * int(sys.argv[3]) * int(sys.argv[6]))
+    c =	(int(sys.argv[2])**2) + (int(sys.argv[3])**2) -	(int(sys.argv[8])**2)
+    delt = b**2	- 4 * a * c
+    print("Cylinder of radius {}".format(int(sys.argv[8])))
+    aff(a, b, delt)
     return(0)
 
 def cone():
-    print('cone')
+    angle = (int(sys.argv[8]) * pi)/180
+    a = (int(sys.argv[5])**2) + (int(sys.argv[6])**2) - ((int(sys.argv[7])**2) / (tan(angle)**2))
+    b = (2 * int(sys.argv[2]) * int(sys.argv[5])) + (2 * int(sys.argv[3]) * int(sys.argv[6])) -	(2 * int(sys.argv[4]) * int(sys.argv[7]) / (tan(angle)**2))
+    c =	(int(sys.argv[2])**2) + (int(sys.argv[3])**2) - (int(sys.argv[4])**2) / (tan(angle)*2)
+    print("Cone with a {} degree angle".format(int(sys.argv[8])))
+    aff()
+    return(0)
+
+def aff(a, b, delt):
+    print("Line passing through the point ({}, {}, {}) and parallel to the vector ({}, {}, {})".format(int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]),
+                                                                                                       int(sys.argv[5]), int(sys.argv[6]), int(sys.argv[7])))
+    if delt < 0:
+        print("No intersection point.")
+    elif delt == 0:
+        print("1 intersection point:")
+        print("({:.3f}, {:.3f}, {:.3f})".format(0.0, 0.0, 0.0))
+    elif delt > 0:
+        print("2 intersetion points")
+        print("({:.3f}, {:.3f}, {:.3f})".format(0.0, 0.0, 0.0))
+        print("({:.3f}, {:.3f}, {:.3f})".format(0.0, 0.0, 0.0))
     return(0)
 
 check_for_err()
@@ -55,5 +83,3 @@ elif int(sys.argv[1]) == 2:
     cylinder()
 elif int(sys.argv[1]) == 3:
     cone()
-
-print('fin')
